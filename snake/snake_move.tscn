@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ysg4uss5eumo"]
+
+[ext_resource type="Script" uid="uid://d11oemhefdw7q" path="res://snake_head.gd" id="1_bq0ci"]
+[ext_resource type="Texture2D" uid="uid://dvr8lniect2mg" path="res://icon.svg" id="2_gofm1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dv1ho"]
+radius = 32.0
+
+[node name="snakeHead" type="CharacterBody2D" unique_id=1699596888]
+position = Vector2(320, 128)
+script = ExtResource("1_bq0ci")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=179254326]
+shape = SubResource("CircleShape2D_dv1ho")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1839939919]
+scale = Vector2(0.5625, 0.5)
+texture = ExtResource("2_gofm1")
