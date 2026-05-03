@@ -1,0 +1,31 @@
+:root {
+    --primary-color: #72E349;
+    --secondary-color: #2BA84A;
+    --accent1-color: #FF6663;
+    --accent2-color: #F9C80E;
+    --accent3-color: #EBEBEB;
+    --heading-font: ;
+    --paragraph-font: ;
+    --nav-background-color:var(--primary-color);
+    --nav-link-color:var(--accent1-color);
+    --nav-hover-link-color: var(--accent2-color);
+    --nav-hover-background-color:var(--accent3-color);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--paragraph-font);
+    font-weight: 350;
+    background-color: var(--secondary-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent3-color);
+    font-family: var(--heading-font);
+    font-weight: 600;
+    padding: 2px;
+    text-align: center;
+}
+
