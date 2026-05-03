@@ -7,7 +7,6 @@
 radius = 32.0
 
 [node name="snakeHead" type="CharacterBody2D" unique_id=1699596888]
-position = Vector2(320, 128)
 script = ExtResource("1_bq0ci")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=179254326]
