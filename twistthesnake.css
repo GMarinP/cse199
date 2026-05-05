@@ -8,7 +8,7 @@
     --paragraph-font: ;
     --nav-background-color:var(--primary-color);
     --nav-link-color:var(--accent1-color);
-    --nav-hover-link-color: var(--accent2-color);
+    --nav-hover-link-color: var(--secondary-color);
     --nav-hover-background-color:var(--accent3-color);
 }
 
@@ -29,3 +29,24 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+nav {
+    background-color: var(--nav-background-color);
+    padding: 0;
+    display: block;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav a {
+    color: var(--nav-link-color);
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--nav-hover-link-color);
+    background-color: var(--nav-hover-background-color);
+}
