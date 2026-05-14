@@ -13,3 +13,6 @@ func spawn_food():
 
 	food.position = Vector2(x, y) * cell_size
 	add_child(food)
+	
+func _ready():
+	spawn_food()
