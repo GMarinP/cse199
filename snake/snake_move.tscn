@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvr8lniect2mg" path="res://icon.svg" id="2_gofm1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dv1ho"]
-radius = 32.0
+radius = 24.0
 
 [node name="snakeHead" type="CharacterBody2D" unique_id=1699596888]
 script = ExtResource("1_bq0ci")
@@ -13,5 +13,6 @@ script = ExtResource("1_bq0ci")
 shape = SubResource("CircleShape2D_dv1ho")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1839939919]
-scale = Vector2(0.5625, 0.5)
+position = Vector2(-1.4305115e-06, -1.4305115e-06)
+scale = Vector2(0.37499997, 0.37499997)
 texture = ExtResource("2_gofm1")
