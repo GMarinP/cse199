@@ -18,10 +18,21 @@ func spawn_food():
 
 	current_food = FoodScene.instantiate()
 
-	var x = randi() % grid_width
-	var y = randi() % grid_height
+	var position_ok = false
+	var new_pos = Vector2.ZERO
 
-	current_food.position = Vector2(x, y) * cell_size
+	while not position_ok:
+		var x = randi() % grid_width
+		var y = randi() % grid_height
+		new_pos = Vector2(x, y) * cell_size
+
+		position_ok = true
+		for wall in get_tree().get_nodes_in_group("wall"):
+			if wall.position == new_pos:
+				position_ok = false
+				break
+
+	current_food.position = new_pos
 	add_child(current_food)
 
 func food_collision():
