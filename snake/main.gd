@@ -2,13 +2,12 @@ extends Node2D
 
 var FoodScene = preload("res://food.tscn")
 var current_food
-
-var grid_width = 20
-var grid_height = 20
-var cell_size = 32
+var grid_width = 24
+var grid_height = 14
+var cell_size = 48
 
 @onready var head = get_node("snakeHead")
-@onready var tilemap = $TileMap   # your wall TileMap
+@onready var tilemap = self 
 
 func _ready():
 	spawn_food()
@@ -27,7 +26,7 @@ func spawn_food():
 		var y = randi() % grid_height
 		var cell = Vector2i(x, y)
 		
-		if tilemap.get_cell_source_id(0, cell) == -1:
+		if tilemap.get_cell_source_id(cell) == -1:
 			position_ok = true
 			new_pos = Vector2(x, y) * cell_size
 			
