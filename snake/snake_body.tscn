@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://7quo73gofggq"]
 
 [ext_resource type="Texture2D" uid="uid://dvr8lniect2mg" path="res://icon.svg" id="1_fwjnq"]
+[ext_resource type="Script" uid="uid://luhwl0ik55ua" path="res://snake_body.gd" id="1_x8a6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8a6j"]
 size = Vector2(64, 64)
 
 [node name="snakeTail" type="CharacterBody2D" unique_id=2057493689]
+script = ExtResource("1_x8a6j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=321424036]
 position = Vector2(32, 32)
