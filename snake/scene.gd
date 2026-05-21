@@ -11,11 +11,8 @@ var is_there_food: bool = false
 
 func _physics_process(delta: float) -> void:
 	if not is_there_food:
+		add_child(food_instantiate)
 		food_instantiate.spawn_food()
 		is_there_food = true
 	
-
-
-
-
 		

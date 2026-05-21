@@ -5,7 +5,7 @@ var food_count = 0
 var HeadScript = load("res://snake_head.gd")
 var HeadNode = load("res://snake_head.tscn")
 var SnakeBody = load("res://snake_body.gd")
-var Background = load("res://muralha.tscn")
+@onready var Background = get_node("/root/TileMap")
 var current_food 
 var grid_width = 24
 var grid_height = 14
