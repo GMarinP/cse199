@@ -46,3 +46,4 @@ func food_collision():
 	if HeadNode.global_position.distance_to(current_food.global_position) < 24:
 		food_count += 1
 		spawn_food()
+	return true
