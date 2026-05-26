@@ -1,10 +1,10 @@
-#extends CharacterBody2D
+extends CharacterBody2D
 #
 #
 #
-#func _ready() -> void:
-	#pass
-	#
+func _ready() -> void:
+	pass
+	
 #
 #func update_tail():
 	## Record the head's position each frame

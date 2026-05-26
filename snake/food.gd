@@ -2,10 +2,11 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 
 var food_count = 0
-var HeadScript = load("res://snake_head.gd")
-var HeadNode = load("res://snake_head.tscn")
+var HeadScript = load("res://snake_move.gd")
 var SnakeBody = load("res://snake_body.gd")
 @onready var Background = get_node("/root/TileMap")
+@onready var HeadNode = get_node("/root/TileMap/snakeHead")
+
 var current_food 
 var grid_width = 24
 var grid_height = 14
@@ -24,6 +25,8 @@ func _physics_process(delta):
 func spawn_food():
 	if current_food:
 		current_food.queue_free()
+	else:
+		current_food = self
 	
 	var position_ok = false
 	var new_pos = Vector2.ZERO
@@ -38,10 +41,8 @@ func spawn_food():
 			new_pos = Vector2(x, y) * cell_size
 			
 	current_food.position = new_pos
-	add_child(current_food)
 	
 func food_collision():
 	if HeadNode.global_position.distance_to(current_food.global_position) < 24:
 		food_count += 1
 		spawn_food()
-		#SnakeBody.grow_tail()
