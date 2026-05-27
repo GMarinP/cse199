@@ -23,10 +23,9 @@ func _physics_process(delta):
 	food_collision()
 
 func spawn_food():
-	if current_food:
-		current_food.queue_free()
-	else:
+	if not current_food:
 		current_food = self
+		
 	
 	var position_ok = false
 	var new_pos = Vector2.ZERO
@@ -43,7 +42,8 @@ func spawn_food():
 	current_food.position = new_pos
 	
 func food_collision():
-	if HeadNode.global_position.distance_to(current_food.global_position) < 24:
+	if HeadNode.global_position.distance_to(current_food.global_position) < cell_size:
 		food_count += 1
+		print(food_count)
 		spawn_food()
-	return true
+	return false
