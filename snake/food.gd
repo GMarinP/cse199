@@ -43,4 +43,4 @@ func food_collision():
 		food_count += 1
 		print(food_count)
 		spawn_food()
-	return false
+		return true

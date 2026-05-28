@@ -5,6 +5,7 @@ var tail_segments: Array = []
 var TailScene = preload("res://snake_body.tscn")
 @onready var head = get_node("/root/TileMap/snakeHead")
 
+
 func _ready() -> void:
 	pass
 
@@ -19,8 +20,9 @@ func update_tail():
 func grow_tail():
 	var segment = TailScene.instantiate()
 	add_child(segment)
+	var offset = head.direction * -48 
 	if tail_segments.size() == 0:
-		segment.global_position = head.global_position
+		segment.global_position = head.global_position + offset
 	else:
-		segment.global_position = tail_segments[-1].global_position
-		tail_segments.append(segment)
+		segment.global_position = tail_segments[-1].global_position +offset
+	tail_segments.append(segment)
