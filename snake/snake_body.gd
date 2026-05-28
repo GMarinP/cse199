@@ -5,9 +5,11 @@ var tail_segments: Array = []
 var TailScene = preload("res://snake_body.tscn")
 @onready var head = get_node("/root/TileMap/snakeHead")
 
-
 func _ready() -> void:
 	pass
+
+func _physics_process(_delta: float) -> void:
+	update_tail()
 
 func update_tail():
 	previous_positions.push_front(head.global_position)
