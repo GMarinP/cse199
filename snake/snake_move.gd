@@ -4,6 +4,10 @@ var direction: Vector2 = Vector2(1,0)
 var input_dir: Vector2
 var speed: float = 200
 
+var previous_positions: Array = []
+var tail_segments: Array = []
+var TailScene = preload("res://snake_body.tscn")
+
 func _ready() -> void:
 	pass
 	
@@ -18,3 +22,10 @@ func _physics_process(_delta: float) -> void:
 			input_dir = Vector2.ZERO
 	velocity = direction * speed
 	move_and_slide()
+	
+	
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var segment = TailScene.instantiate()
+	add_sibling(segment)
+	var offset = direction * -48 
+	tail_segments.append(segment)

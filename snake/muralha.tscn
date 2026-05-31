@@ -10,9 +10,13 @@
 texture = ExtResource("1_me0pd")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 
 [sub_resource type="TileSet" id="TileSet_6y3vh"]
 tile_size = Vector2i(48, 48)
@@ -25,7 +29,7 @@ tile_set = SubResource("TileSet_6y3vh")
 script = ExtResource("2_6fimg")
 
 [node name="snakeHead" parent="." unique_id=1699596888 instance=ExtResource("2_8ev52")]
-position = Vector2(416, 288)
+position = Vector2(432, 288)
 
 [node name="background" type="TextureRect" parent="." unique_id=2140112229]
 z_index = -2
