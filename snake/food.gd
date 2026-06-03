@@ -2,8 +2,6 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 
 var food_count = 0
-var HeadScript = load("res://snake_move.gd")
-var SnakeBody = load("res://snake_body.gd")
 @onready var Background = get_node("/root/TileMap")
 @onready var HeadNode = get_node("/root/TileMap/snakeHead")
 
@@ -42,3 +40,4 @@ func _on_body_entered(body: Node2D) -> void:
 	food_count += 1
 	print(food_count)
 	spawn_food() 
+	
