@@ -7,13 +7,18 @@ var speed: float = 200
 var tail_segments: Array = []
 var previous_positions: Array = []
 var TailScene = preload("res://snake_body.tscn")
-var last_tile
+var last_tile: Vector2
 var segment
+var food
 
 func _ready() -> void:
 	pass
 	
 func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		_on_area_2d_area_entered(null)
+	#if food.food_count %10 :
+		#speed += 5
 	var input: Vector2 = Input.get_vector("head_left", "head_right", "head_up", "head_down")
 	if input and (input.x == 0 or input.y == 0) and ((input.x and not direction.x) or (input.y and not direction.y)):
 		input_dir = input
@@ -29,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	#when the head touches fruit this function checks and it instantiates a tail segment
+	#when the head touches fruit this function instantiates a tail segment
 	segment = TailScene.instantiate()
 	await get_tree().physics_frame
 	segment.head = self

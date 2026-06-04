@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var TailScene = preload("res://snake_body.tscn")
-var head
-var parent 
+var head: CharacterBody2D
+var parent: Node2D
 
 func _physics_process(_delta: float) -> void:
 	update_tail()

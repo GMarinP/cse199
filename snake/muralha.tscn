@@ -38,4 +38,5 @@ offset_bottom = 672.0
 texture = ExtResource("4_l8l6x")
 stretch_mode = 1
 
-[node name="food" parent="." unique_id=2015253950 instance=ExtResource("4_6fimg")]
+[node name="food" parent="." unique_id=2015253950 node_paths=PackedStringArray("Background") instance=ExtResource("4_6fimg")]
+Background = NodePath("..")

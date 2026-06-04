@@ -2,8 +2,8 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 
 var food_count = 0
-@onready var Background = get_node("/root/TileMap")
 @onready var HeadNode = get_node("/root/TileMap/snakeHead")
+@export var Background: TileMapLayer
 
 var current_food 
 var grid_width = 24
