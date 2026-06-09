@@ -31,9 +31,8 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * speed
 	previous_positions.append(last_tile)
 	move_and_slide()
-
 	
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(_area: Area2D) -> void:
 	#when the head touches fruit this function instantiates a tail segment
 	segment = TailScene.instantiate()
 	await get_tree().physics_frame

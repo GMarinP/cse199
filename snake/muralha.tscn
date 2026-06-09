@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ysg4uss5eumo" path="res://snake_move.tscn" id="2_8ev52"]
 [ext_resource type="PackedScene" uid="uid://bdogsmka4mp6q" path="res://food.tscn" id="4_6fimg"]
 [ext_resource type="Texture2D" uid="uid://chyoper7wpq6a" path="res://background.png" id="4_l8l6x"]
+[ext_resource type="PackedScene" uid="uid://7quo73gofggq" path="res://snake_body.tscn" id="4_w1u2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l8l6x"]
 texture = ExtResource("1_me0pd")
@@ -31,6 +32,8 @@ script = ExtResource("2_6fimg")
 [node name="snakeHead" parent="." unique_id=1699596888 instance=ExtResource("2_8ev52")]
 position = Vector2(432, 288)
 
+[node name="snakeTail" parent="." unique_id=2057493689 instance=ExtResource("4_w1u2x")]
+
 [node name="background" type="TextureRect" parent="." unique_id=2140112229]
 z_index = -2
 offset_right = 1152.0
@@ -40,3 +43,7 @@ stretch_mode = 1
 
 [node name="food" parent="." unique_id=2015253950 node_paths=PackedStringArray("Background") instance=ExtResource("4_6fimg")]
 Background = NodePath("..")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="." unique_id=1943409773]
+node_a = NodePath("../snakeHead")
+node_b = NodePath("../snakeTail")

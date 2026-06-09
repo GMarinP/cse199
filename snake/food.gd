@@ -36,7 +36,7 @@ func spawn_food():
 	current_food.position = new_pos
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	food_count += 1
 	print(food_count)
 	spawn_food() 
