@@ -1,37 +1,54 @@
-extends CharacterBody2D
+extends Node2D
 
-var direction: Vector2 = Vector2(1,0)
+var direction: Vector2 = Vector2(0,-1)
 var input_dir: Vector2
-var speed: float = 200
+var last_frame: Vector2
+var score: int = 0
+@onready var ray: RayCast2D = $Icon/ray
+var speed: int = 4
 
-var tail_segments: Array = []
-var previous_positions: Array = []
-var TailScene = preload("res://snake_body.tscn")
-var last_tile: Vector2
-var segment
-var food
+const BODY_SEGMENT: PackedScene = preload("res://snake_body.tscn")
+var segments: Array[StaticBody2D]
 
 func _ready() -> void:
 	pass
 	
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		_on_area_2d_area_entered(null)
-	#if food.food_count %10 :
-		#speed += 5
-	var input: Vector2 = Input.get_vector("head_left", "head_right", "head_up", "head_down")
+	if Input.is_action_pressed("ui_text_delete"):
+		return
+		var input: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input and (input.x == 0 or input.y == 0) and ((input.x and not direction.x) or (input.y and not direction.y)):
 		input_dir = input
-	if global_position.snapped(Vector2(48,48)).distance_to(global_position) <= 2:
-		if input_dir:
-			global_position = global_position.snapped(Vector2(48,48))
-			direction = input_dir
-			input_dir = Vector2.ZERO
-		last_tile = global_position.snapped(Vector2(48,48))
-	velocity = direction * speed
-	previous_positions.append(last_tile)
-	move_and_slide()
+		last_frame = global_position
+	global_position += direction * speed
+	if global_position.snapped(Vector2(3,3)) == global_position.snapped(Vector2(48,48)):
+			update()
+	if ray.is_colliding():
+		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("ui_accept"):
+		@warning_ignore("integer_division")
+		for i in range(24 / speed + 1):
+			await get_tree().process_frame
+			add_segment()
 	
+func add_segment():
+	var new_segment: StaticBody2D = BODY_SEGMENT.instantiate()
+	if segments.size() == 0:
+		new_segment.parent = self
+	else:
+		new_segment.parent = segments[-1]
+		segments.append(new_segment)
+	add_sibling(new_segment)
+	new_segment.global_position = new_segment.parent.global_position
+
+func update() -> void:
+	if input_dir:
+		direction = input_dir
+		$Icon.look_at($Icon.global_position + direction)
+		$Icon.rotation_degrees += 90
+		global_position = global_position.snapped(Vector2(48,48))
+		input_dir = Vector2.ZERO
+		
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	#when the head touches fruit this function instantiates a tail segment
 	segment = TailScene.instantiate()
