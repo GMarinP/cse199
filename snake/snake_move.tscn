@@ -1,26 +1,24 @@
 [gd_scene format=3 uid="uid://ysg4uss5eumo"]
 
 [ext_resource type="Script" uid="uid://d11oemhefdw7q" path="res://snake_move.gd" id="1_bq0ci"]
-[ext_resource type="Texture2D" uid="uid://dvr8lniect2mg" path="res://icon.svg" id="2_gofm1"]
+[ext_resource type="Texture2D" uid="uid://644ebf6qbraj" path="res://sprite-sheet.png" id="2_bq0ci"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq0ci"]
-size = Vector2(48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gofm1"]
+atlas = ExtResource("2_bq0ci")
+region = Rect2(48, 96, 48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gofm1"]
-size = Vector2(48, 48)
+size = Vector2(32, 32)
 
 [node name="snakeHead" type="Node2D" unique_id=796293682]
 script = ExtResource("1_bq0ci")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=179254326]
-position = Vector2(24, 24)
-shape = SubResource("RectangleShape2D_bq0ci")
-
 [node name="Icon" type="Sprite2D" parent="." unique_id=1839939919]
-modulate = Color(1, 0, 1, 1)
 position = Vector2(23.999998, 23.999998)
-scale = Vector2(0.37499997, 0.37499997)
-texture = ExtResource("2_gofm1")
+scale = Vector2(0.99999994, 0.99999994)
+texture = SubResource("AtlasTexture_gofm1")
+
+[node name="ray" type="RayCast2D" parent="Icon" unique_id=1265003829]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1073235771]
 position = Vector2(24, 24)

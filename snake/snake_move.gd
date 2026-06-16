@@ -13,7 +13,7 @@ var segments: Array[StaticBody2D]
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_text_delete"):
 		return
-	var input: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input: Vector2 = Input.get_vector("head_left", "head_right", "head_up", "head_down")
 	if input and (input.x == 0 or input.y == 0) and ((input.x and not direction.x) or (input.y and not direction.y)):
 		input_dir = input
 	last_frame = global_position
