@@ -4,6 +4,7 @@ extends Area2D
 var food_count = 0
 @onready var HeadNode = get_node("/root/TileMap/snakeHead")
 @export var Background: TileMapLayer
+@onready var ray: RayCast2D = $Sprite2D/RayCast2D
 
 var current_food 
 var grid_width = 24

@@ -29,6 +29,7 @@ func _physics_process(_delta: float) -> void:
 		for i in range(24 / speed + 1):
 			await get_tree().process_frame
 			add_segment()
+			
 
 func add_segment():
 	var new_segment: StaticBody2D = BODY_SEGMENT.instantiate()
@@ -48,11 +49,7 @@ func update() -> void:
 		global_position = global_position.snapped(Vector2(48,48))
 		input_dir = Vector2.ZERO
 		
-#func _on_area_2d_area_entered(_area: Area2D) -> void:
-	##when the head touches fruit this function instantiates a tail segment
-	#segment = TailScene.instantiate()
-	#await get_tree().physics_frame
-	#segment.head = self
-	#add_sibling(segment)
-	#tail_segments.append(segment)
-	#segment.set_up()
+func _on_area_2d_area_entered(_area: Area2D) -> void:
+	#when the head touches fruit this function instantiates a tail segment
+	await get_tree().physics_frame
+	add_segment()
