@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://bdogsmka4mp6q"]
 
 [ext_resource type="Script" uid="uid://dspx7qgh3pihg" path="res://food.gd" id="1_pohk7"]
-[ext_resource type="Texture2D" uid="uid://dvr8lniect2mg" path="res://icon.svg" id="2_q6vj8"]
+[ext_resource type="Texture2D" uid="uid://644ebf6qbraj" path="res://sprite-sheet.png" id="2_pohk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pohk7"]
 size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6vj8"]
+atlas = ExtResource("2_pohk7")
+region = Rect2(192, 48, 48, 48)
 
 [node name="food" type="Area2D" unique_id=2015253950]
 script = ExtResource("1_pohk7")
@@ -15,8 +19,8 @@ shape = SubResource("RectangleShape2D_pohk7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=134407987]
 position = Vector2(24, 24)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_q6vj8")
+scale = Vector2(0.6666667, 0.6666667)
+texture = SubResource("AtlasTexture_q6vj8")
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite2D" unique_id=219683722]
 
