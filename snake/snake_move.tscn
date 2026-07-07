@@ -11,6 +11,7 @@ region = Rect2(48, 96, 48, 48)
 size = Vector2(32, 32)
 
 [node name="snakeHead" type="Node2D" unique_id=796293682]
+z_index = 1
 script = ExtResource("1_bq0ci")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1839939919]
@@ -19,6 +20,8 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = SubResource("AtlasTexture_gofm1")
 
 [node name="ray" type="RayCast2D" parent="Icon" unique_id=1265003829]
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1073235771]
 position = Vector2(24, 24)

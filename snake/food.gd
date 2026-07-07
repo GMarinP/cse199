@@ -1,10 +1,10 @@
 extends Area2D
 # Called when the node enters the scene tree for the first time.
 
+class_name Food
 var food_count = 0
 @onready var HeadNode = get_node("/root/TileMap/snakeHead")
 @export var Background: TileMapLayer
-@onready var ray: RayCast2D = $Sprite2D/RayCast2D
 
 var current_food 
 var grid_width = 24
@@ -31,13 +31,15 @@ func spawn_food():
 		var x = randi() % grid_width
 		var y = randi() % grid_height
 		var cell = Vector2i(x, y)
-		if Background.get_cell_source_id(cell) == -1:
+		if Background == null: 
+			break
+		elif Background.get_cell_source_id(cell) == -1:
 			position_ok = true
 			new_pos = Vector2(x, y) * cell_size
 	current_food.position = new_pos
-
-
-func _on_body_entered(_body: Node2D) -> void:
+	
+func on_raycast_hit():
+	queue_free()
 	food_count += 1
 	print(food_count)
 	spawn_food() 

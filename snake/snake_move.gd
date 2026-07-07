@@ -11,6 +11,12 @@ const BODY_SEGMENT: PackedScene = preload("res://snake_body.tscn")
 var segments: Array[StaticBody2D]
 
 func _physics_process(_delta: float) -> void:
+	ray.force_raycast_update()
+	if ray.is_colliding():
+		if ray.get_collider() is Food:
+			ray.get_collider().on_raycast_hit()
+		elif ray.get_collider() is TileMapLayer or ray.get_collider() is StaticBody2D:
+			get_tree().reload_current_scene()
 	if Input.is_action_pressed("ui_text_delete"):
 		return
 	var input: Vector2 = Input.get_vector("head_left", "head_right", "head_up", "head_down")
@@ -20,8 +26,6 @@ func _physics_process(_delta: float) -> void:
 	global_position += direction * speed
 	if global_position.snapped(Vector2(3,3)) == global_position.snapped(Vector2(48,48)):
 		update()
-	if ray.is_colliding():
-		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("ui_accept"):
 		score += 1
 		print(score)
@@ -29,7 +33,6 @@ func _physics_process(_delta: float) -> void:
 		for i in range(24 / speed + 1):
 			await get_tree().process_frame
 			add_segment()
-			
 
 func add_segment():
 	var new_segment: StaticBody2D = BODY_SEGMENT.instantiate()
@@ -45,10 +48,10 @@ func update() -> void:
 	if input_dir:
 		direction = input_dir
 		$Icon.look_at($Icon.global_position + direction)
-		$Icon.rotation_degrees += 90
+		$Icon.rotation_degrees += 180
 		global_position = global_position.snapped(Vector2(48,48))
 		input_dir = Vector2.ZERO
-		
+
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	#when the head touches fruit this function instantiates a tail segment
 	await get_tree().physics_frame
