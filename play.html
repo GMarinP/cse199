@@ -20,14 +20,12 @@
       </nav>
     </header>
     <main>
-      <div class="game-container">
-        <iframe
-          src="https://yourdomain.com"
-          allow="autoplay; fullscreen; gamepad"
-          loading="lazy"
-        >
-        </iframe>
-      </div>
+      <canvas id="canvas"></canvas>
+      <script src="godot.js"></script>
+      <script>
+        var engine = new Engine($GODOT_CONFIG);
+        engine.startGame();
+      </script>
     </main>
   </body>
 </html>
