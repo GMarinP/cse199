@@ -1,5 +1,5 @@
-const myWasm = "mygame.wasm";
-const myPck = "mygame.pck";
+const myWasm = "exports/web/snake.wasm";
+const myPck = "exports/web/snake.pck";
 const engine = new Engine();
 Promise.all([
   // Load and init the engine
