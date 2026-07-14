@@ -2,9 +2,12 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 
 class_name Food
+
 var food_count = 0
 @onready var HeadNode = get_node("/root/TileMap/snakeHead")
 @export var Background: TileMapLayer
+
+const FOOD_SCENE := preload("res://food.tscn")
 
 var current_food 
 var grid_width = 24
@@ -23,6 +26,7 @@ func _physics_process(_delta):
 
 func spawn_food():
 # this function checks for cells that are not walls and spawns food at random spots.
+	
 	if not current_food:
 		current_food = self
 	var position_ok = false
@@ -31,6 +35,7 @@ func spawn_food():
 		var x = randi() % grid_width
 		var y = randi() % grid_height
 		var cell = Vector2i(x, y)
+		#print("Cell ", cell, " source id = ", Background.get_cell_source_id(cell))
 		if Background == null: 
 			break
 		elif Background.get_cell_source_id(cell) == -1:
@@ -39,8 +44,13 @@ func spawn_food():
 	current_food.position = new_pos
 	
 func on_raycast_hit():
-	queue_free()
 	food_count += 1
 	print(food_count)
-	spawn_food() 
+
+	var new_food = FOOD_SCENE.instantiate()
+	get_parent().add_child(new_food)
+	new_food.spawn_food()
+
+	queue_free()
+	
 	

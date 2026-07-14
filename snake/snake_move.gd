@@ -1,6 +1,6 @@
 extends Node2D
 
-var direction: Vector2 = Vector2(0,-1)
+var direction: Vector2 = Vector2(0,0)
 var input_dir: Vector2
 var last_frame: Vector2
 var score: int = 0
@@ -11,14 +11,7 @@ const BODY_SEGMENT: PackedScene = preload("res://snake_body.tscn")
 var segments: Array[StaticBody2D]
 
 func _physics_process(_delta: float) -> void:
-	ray.force_raycast_update()
-	if ray.is_colliding():
-		if ray.get_collider() is Food:
-			ray.get_collider().on_raycast_hit()
-		elif ray.get_collider() is TileMapLayer or ray.get_collider() is StaticBody2D:
-			get_tree().reload_current_scene()
-	if Input.is_action_pressed("ui_text_delete"):
-		return
+	collision_check()
 	var input: Vector2 = Input.get_vector("head_left", "head_right", "head_up", "head_down")
 	if input and (input.x == 0 or input.y == 0) and ((input.x and not direction.x) or (input.y and not direction.y)):
 		input_dir = input
@@ -26,6 +19,8 @@ func _physics_process(_delta: float) -> void:
 	global_position += direction * speed
 	if global_position.snapped(Vector2(3,3)) == global_position.snapped(Vector2(48,48)):
 		update()
+	
+	#grows the snake when spacebar is pressed (for testing)
 	if Input.is_action_just_pressed("ui_accept"):
 		score += 1
 		print(score)
@@ -51,6 +46,16 @@ func update() -> void:
 		$Icon.rotation_degrees += 180
 		global_position = global_position.snapped(Vector2(48,48))
 		input_dir = Vector2.ZERO
+		
+func collision_check():
+	ray.force_raycast_update()
+	if ray.is_colliding():
+		if ray.get_collider() is Food:
+			ray.get_collider().on_raycast_hit()
+		elif ray.get_collider() is TileMapLayer:
+			get_tree().reload_current_scene()
+		elif ray.get_collider() is StaticBody2D:
+			get_tree().reload_current_scene()
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	#when the head touches fruit this function instantiates a tail segment
